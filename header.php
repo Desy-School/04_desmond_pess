@@ -12,6 +12,8 @@
 			
 		  <li class="nav-item"> <a class="nav-link" href="history.html">History</a> </li>
 			
+		<li class="nav-item"> <a class="nav-link" href="report.php">Report</a> </li>
+			
           <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Reports </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown1"> <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a>
               <div class="dropdown-divider"></div>

@@ -19,25 +19,39 @@
 	}
 
 	$isLoginButtonClicked = isset($_POST["btnSubmit"]);
-	if($isLoginButtonClicked == true){
+	if($isLoginButtonClicked == true)
+	{
 		$userName = $_POST["tbUsername"];
 		$password = $_POST["tbPassword"];
-		
-		if($userName == "pessadmin" && $password== "pessadmin1"){
-			$_SESSION["SESS_DISPLAYNAME"] = "Admin";
-			
+	require_once "db.php";
+	$conn = new mysqli(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE);
+	$sql = "SELECT * FROM users";
+	$result = $conn->query($sql);
+	$users = [];
+	while($row = $result->fetch_assoc())
+	{
+		$un = $row['username'];
+		$pwd = $row['password'];
+		array_push($users, $pwd);
+		if($userName == $un && $password== $pwd)
+		{
+		$_SESSION["SESS_DISPLAYNAME"] = $un;
+	echo $un;
 			$rememberMeChecked = isset($_POST["cbRemember"]);
-			if($rememberMeChecked == true) {
+			if($rememberMeChecked == true) 
+			{
 				//will set the cookie to expire in 30 days
 				//If set to 0, or not specificed, the cookie will expire at the end of the session (when the browser closes).
 				$expireTime = time() + 60 * 60 * 24 * 30;
-				setcookie("COOKIE_DISPLAYNAME", "David", $expireTime);
+				setcookie("COOKIE_DISPLAYNAME", "pessadmin", $expireTime);
 			}
 			header("Location: logcall.php");
 		}
-		else {
+		else 
+		{
 			echo "<span style='color:red'>Wrong Username / password </span>";
 		}
+	}
 	}
 ?>
 <!doctype html>

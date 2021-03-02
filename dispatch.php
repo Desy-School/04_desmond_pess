@@ -48,7 +48,7 @@
 		$typeOfIncident = $_POST["typeOfIncident"];
 		$descriptionOfIncident = $_POST["descriptionOfIncident"];
 		
-		$sql = "INSERT INTO `incident`(`caller_name`, `phone_number`, `incident_type_id`, `incident_location`, `incident_desc`, `incident_status_id`, `time_called`) VALUES ('" . $callerName . "','" . $contactNo . "','" . $locationOfIncident . "','" . $typeOfIncident . "','" . $descriptionOfIncident . "','" . $incidentStatus . "' ,now())";
+		$sql = "INSERT INTO `incident`(`caller_name`, `phone_number`, `incident_type_id`, `incident_location`, `incident_desc`, `incident_status_id`, `time_called`) VALUES ('" . $callerName . "','" . $contactNo . "','" . $typeOfIncident . "','" . $locationOfIncident . "','" . $descriptionOfIncident . "','" . $incidentStatus . "' ,now())";
 		//echo $sql;
 		$conn = new mysqli(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE);
 		$insertIncidentSuccess = $conn->query($sql);
@@ -127,7 +127,7 @@
 			<div class="col-sm-8">
 				<span>
 				<?php echo $locationOfIncident; ?>
-				<input type="hidden" id="locationOfIncident" name="locationOfIncident" value="<?php echo $typeOfIncident; ?>">
+				<input type="hidden" id="locationOfIncident" name="locationOfIncident" value="<?php echo $locationOfIncident; ?>">
 				</span>
 			</div>
 		  </div>
