@@ -15,7 +15,6 @@
 	INNER JOIN incident 
 	ON dispatch.incident_id = incident.incident_id';
 	$noFilter = @mysqli_query($conn, $query);	
-	
 ?>
 	
 <title>Reports</title>
@@ -26,14 +25,9 @@
 		include "header.php";
 	?>
 	<form method="POST" class="mt-3 text-center">
-		<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="filter">
-			<option selected value=0>Select</option>
-			<?php
-				foreach($incidentTypes as $incidentType) {
-				echo "<option value=\"" . $incidentType["id"] . "\">" . $incidentType["type"] . "</option>";}
-			?>
-		</select>
-		<button type="submit" class="btn btn-primary">Filter</button>
+		<input type="date" name="start">
+		<input type="date" name="end">
+		<button type="submit" class="btn btn-primary" name="filterBtnClicked"'>Filter</button>
 	</form>
 		<table class="table table-striped">
 			<?php 
@@ -50,12 +44,14 @@
 			  <th scope="col">Time Completed</th>
 			</tr>';
 					
-				if (isset($_POST["filter"])){
-					$query = 'SELECT incident.incident_id, incident.caller_name, incident.phone_number, incident.incident_type_id, incident.incident_location, incident.incident_desc, incident.incident_status_id,  incident.time_called, dispatch.incident_id, dispatch.time_arrived, dispatch.time_completed 
+				if (isset($_POST["filterBtnClicked"])){
+					$startDate = $_POST["start"];
+					$endDate = $_POST["end"];
+					$query = "SELECT incident.incident_id, incident.caller_name, incident.phone_number, incident.incident_type_id, incident.incident_location, incident.incident_desc, incident.incident_status_id,  incident.time_called, dispatch.incident_id, dispatch.time_arrived, dispatch.time_completed 
 					from dispatch
 					INNER JOIN incident 
 					ON dispatch.incident_id = incident.incident_id
-					WHERE incident_type_id = ' . $_POST['filter'];
+					WHERE time_called BETWEEN '$startDate' and '$endDate'";
 					$filtered = @mysqli_query($conn, $query);
 					@mysqli_query($conn, $query);
 					
