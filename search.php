@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    $has_Session_DisplayName = isset($_SESSION["SESS_DISPLAYNAME"]);
+				if($has_Session_DisplayName == false) {
+                     header('Location: login.php');
+				}
+?>
 <!doctype html>
 <html>
 <head>

@@ -10,14 +10,8 @@
 			
 		  <li class="nav-item"> <a class="nav-link" href="update.php">Update</a> </li>
 			
-		  <li class="nav-item"> <a class="nav-link" href="history.html">History</a> </li>
-			
 		<li class="nav-item"> <a class="nav-link" href="report.php">Report</a> </li>
-			
-          <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Reports </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown1"> <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a> </div>
+		
           </li>
 			</ul>
 			<ul class="my-2 my-sm-0">
@@ -29,19 +23,12 @@
 					echo "Welcome <strong>" . $_cookie_DisplayName . "!</strong> [<a href='logout.php'>logout</a>]";
 				}
 				else {
-					if(isset($_SESSION) == false){
-				session_start();
-				}
 				//Check for Session
 				$has_Session_DisplayName = isset($_SESSION["SESS_DISPLAYNAME"]);
 				if($has_Session_DisplayName == true) {
 					$session_DisplayName = $_SESSION["SESS_DISPLAYNAME"];
 					echo "Welcome <strong>" . $session_DisplayName . "!</strong> [<a href='logout.php'>logout</a>]";
 				}
-				else {
-					header("Location: login.php");
-					//echo "<a href='login.php'>Login</a>";
-					}
 				}
 			?>
 			</dt>
